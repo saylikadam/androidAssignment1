@@ -16,6 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".calculateIteration"
+            android:label="@string/title_activity_calculate_iteration" >
+        </activity>
     </application>
 
 </manifest>
