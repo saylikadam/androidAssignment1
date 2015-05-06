@@ -20,6 +20,10 @@
             android:name=".calculateIteration"
             android:label="@string/title_activity_calculate_iteration" >
         </activity>
+        <activity
+            android:name=".ShowIterations"
+            android:label="@string/title_activity_show_iterations" >
+        </activity>
     </application>
 
 </manifest>

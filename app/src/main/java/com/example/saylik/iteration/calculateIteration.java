@@ -19,19 +19,21 @@ public class calculateIteration extends Activity {
         calculateIteration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               buttonClick(view);
+                Intent showIteration = new Intent(calculateIteration.this, ShowIterations.class);
+                int iterations = calculateIterations();
+                showIteration.putExtra("iteration", iterations+"");
+                startActivity(showIteration);
             }
         });
     }
 
-    public void buttonClick(View view){
+    public int calculateIterations(){
         EditText points = (EditText)findViewById(R.id.enter_point);
         EditText velocity = (EditText)findViewById(R.id.enter_velocity);
         Integer intPoint = Integer.parseInt(String.valueOf(points.getText()));
         Integer intVelocity = Integer.parseInt(String.valueOf(velocity.getText()));
         int iteration = intPoint.intValue()/intVelocity.intValue();
-        TextView tv = (TextView)findViewById(R.id.show_iterations);
-        tv.setText(iteration+"");
+        return iteration;
     }
 
 
