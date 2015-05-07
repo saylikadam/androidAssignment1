@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="header" type="id">elementContainer</item>
+    <item name="record_estimation" type="id">record_estmation</item>
 </resources>

@@ -9,55 +9,43 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 
-public class calculateIteration extends Activity {
+public class CalculateIteration extends Activity {
+
+    private static final int STATIC_INTEGER_VALUE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculate_iteration);
-        Button calculateIteration = (Button)findViewById(R.id.calculate_iteration);
-        calculateIteration.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent showIteration = new Intent(calculateIteration.this, ShowIterations.class);
-                int iterations = calculateIterations();
-                showIteration.putExtra("iteration", iterations+"");
-                startActivity(showIteration);
-            }
-        });
+
+    }
+
+    public void calculateIteration(View view){
+        Intent showIteration = new Intent(CalculateIteration.this, ShowIterations.class);
+        int iterations = calculateIterations();
+        showIteration.putExtra("iteration", iterations+"");
+        startActivityForResult(showIteration, STATIC_INTEGER_VALUE);
     }
 
     public int calculateIterations(){
         EditText points = (EditText)findViewById(R.id.enter_point);
         EditText velocity = (EditText)findViewById(R.id.enter_velocity);
-        Integer intPoint = Integer.parseInt(String.valueOf(points.getText()));
-        Integer intVelocity = Integer.parseInt(String.valueOf(velocity.getText()));
-        int iteration = intPoint.intValue()/intVelocity.intValue();
+        int intPoint = points.getInputType();
+        int intVelocity = velocity.getInputType();
+        int iteration = intPoint/intVelocity;
         return iteration;
     }
 
+    @Override
+    public void onActivityResult(int requestCode,int resultCode,Intent data){
+//        super.onActivityResult(requestCode,resultCode,data);
+        if(requestCode == STATIC_INTEGER_VALUE){
+            if(resultCode == Activity.RESULT_OK){
+                String newText = data.getStringExtra("iterationWithBuffer");
+                TextView buffer = (TextView)findViewById(R.id.show_buffer);
+                buffer.setText(newText);
+            }
+        }
 
-
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_calculate_iteration, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
+    }
 }

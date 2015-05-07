@@ -3,27 +3,21 @@ package com.example.saylik.iteration;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
 
-public class MainActivity extends Activity {
+public class RecordEstimation extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_record_estimation);
+    }
 
-        Button recordEstimateButton = (Button)findViewById(R.id.rec_est_button);
-        recordEstimateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, calculateIteration.class);
-                startActivity(intent);
-            }
-        });
+    public void estimateIteration(View view) {
+        Intent intent = new Intent(RecordEstimation.this, CalculateIteration.class);
+        startActivity(intent);
     }
 
 
