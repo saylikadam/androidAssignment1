@@ -3,14 +3,12 @@ package com.example.saylik.iteration;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 
-public class CalculateIteration extends Activity {
+public class calculateIteration extends Activity {
 
     private static final int STATIC_INTEGER_VALUE = 1;
 
@@ -22,7 +20,7 @@ public class CalculateIteration extends Activity {
     }
 
     public void calculateIteration(View view){
-        Intent showIteration = new Intent(CalculateIteration.this, ShowIterations.class);
+        Intent showIteration = new Intent(calculateIteration.this, ShowIterations.class);
         int iterations = calculateIterations();
         showIteration.putExtra("iteration", iterations+"");
         startActivityForResult(showIteration, STATIC_INTEGER_VALUE);
