@@ -3,6 +3,7 @@ package com.example.saylik.iteration;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,9 +31,9 @@ public class CalculateIteration extends Activity {
     public int calculateIterations(){
         EditText points = (EditText)findViewById(R.id.enter_point);
         EditText velocity = (EditText)findViewById(R.id.enter_velocity);
-        int intPoint = points.getInputType();
-        int intVelocity = velocity.getInputType();
-        int iteration = intPoint/intVelocity;
+        Integer intPoint = Integer.parseInt(String.valueOf(points.getText()));
+        Integer intVelocity = Integer.parseInt(String.valueOf(velocity.getText()));
+        int iteration = intPoint.intValue()/intVelocity.intValue();
         return iteration;
     }
 

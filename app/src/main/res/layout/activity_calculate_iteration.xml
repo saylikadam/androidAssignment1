@@ -18,7 +18,7 @@
             android:orientation="horizontal">
 
             <TextView android:id="@+id/point"
-                android:layout_width="125dp"
+                android:layout_width="@dimen/activity_width_layout"
                 android:layout_height="wrap_content"
                 android:text="@string/lbl_points"
                 />

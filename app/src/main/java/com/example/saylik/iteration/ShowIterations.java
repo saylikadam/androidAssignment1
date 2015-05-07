@@ -3,6 +3,7 @@ package com.example.saylik.iteration;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -25,16 +26,16 @@ public class ShowIterations extends Activity {
 
     private int calculateBuffer() {
         TextView iterationValue = (TextView)findViewById(R.id.show_iterations);
-        int iterations = iterationValue.getInputType();
+        Integer iterations = Integer.parseInt(iterationValue.getText().toString());
         EditText bufferValue = (EditText)findViewById(R.id.show_buffer);
-        int buffer = bufferValue.getInputType();
-        int bufferWithIter = iterations+buffer;
+        Integer buffer = Integer.parseInt(bufferValue.getText().toString());
+        int bufferWithIter = iterations.intValue()+buffer.intValue();
         return bufferWithIter;
     }
 
     public void calcIterWithBuff(View view){
         Intent resultIntent = new Intent();
-        resultIntent.putExtra("iterationWithBuffer",calculateBuffer()+"");
+        resultIntent.putExtra("iterationWithBuffer",String.valueOf(calculateBuffer()));
         setResult(Activity.RESULT_OK,resultIntent);
         finish();
     }
