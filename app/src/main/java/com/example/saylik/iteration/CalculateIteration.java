@@ -8,7 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 
-public class calculateIteration extends Activity {
+public class CalculateIteration extends Activity {
 
     private static final int STATIC_INTEGER_VALUE = 1;
 
@@ -20,7 +20,7 @@ public class calculateIteration extends Activity {
     }
 
     public void calculateIteration(View view){
-        Intent showIteration = new Intent(calculateIteration.this, ShowIterations.class);
+        Intent showIteration = new Intent(CalculateIteration.this, ShowIterations.class);
         int iterations = calculateIterations();
         showIteration.putExtra("iteration", iterations+"");
         startActivityForResult(showIteration, STATIC_INTEGER_VALUE);

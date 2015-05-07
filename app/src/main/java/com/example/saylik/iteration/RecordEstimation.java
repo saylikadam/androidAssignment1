@@ -15,7 +15,7 @@ public class RecordEstimation extends Activity {
     }
 
     public void estimateIteration(View view) {
-        Intent intent = new Intent(RecordEstimation.this, calculateIteration.class);
+        Intent intent = new Intent(RecordEstimation.this, CalculateIteration.class);
         startActivity(intent);
     }
 

@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".calculateIteration"
+            android:name=".CalculateIteration"
             android:label="@string/title_activity_calculate_iteration" >
         </activity>
         <activity
