@@ -1,15 +1,14 @@
 <resources>
-    <string name="app_name">Iteration</string>
-
+    <string name="app_name">Iteration Planner</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_calculate_iteration">Iteration</string>
+    <string name="title_activity_calculate_iteration">Iteration Planner</string>
     <string name="lbl_points">Points</string>
     <string name="lbl_enter_points">enter points</string>
     <string name="lbl_velocity">Velocity</string>
     <string name="lbl_enter_velocity">enter velocity</string>
     <string name="iterations">iterations</string>
-    <string name="title_activity_show_iterations">Iteration</string>
+    <string name="title_activity_show_iterations">Iteration Planner</string>
     <string name="buffer">buffer</string>
     <string name="lbl_buffer">iteration with buffer</string>
 </resources>

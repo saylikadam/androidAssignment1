@@ -21,7 +21,8 @@ public class ShowIterations extends Activity {
     private void setIteration() {
         TextView textView = (TextView)findViewById(R.id.show_iterations);
         Intent intent = getIntent();
-        textView.setText(intent.getStringExtra("iteration"));
+        int iterations = intent.getIntExtra("iteration", 0);
+        textView.setText(String.valueOf(iterations));
     }
 
     private int calculateBuffer() {
