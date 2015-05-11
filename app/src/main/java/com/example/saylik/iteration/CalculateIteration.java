@@ -1,15 +1,21 @@
 package com.example.saylik.iteration;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import datastorage.DataProcessor;
+import datastorage.DatabaseCreationContract;
+import datastorage.DatabaseCreator;
+import estimation.EstimateIteration;
 
 
 public class CalculateIteration extends Activity {
@@ -21,14 +27,6 @@ public class CalculateIteration extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculate_iteration);
-//        Button clickPhoto = (Button)findViewById(R.id.click_picture);
-//        clickPhoto.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
-
     }
 
     public void calculateIteration(View view){
@@ -39,19 +37,27 @@ public class CalculateIteration extends Activity {
     }
 
     public int calculateIterations(){
-        EditText points = (EditText)findViewById(R.id.enter_point);
-        EditText velocity = (EditText)findViewById(R.id.enter_velocity);
-        Integer intPoint = Integer.parseInt(String.valueOf(points.getText()));
-        Integer intVelocity = Integer.parseInt(String.valueOf(velocity.getText()));
-        int iteration = intPoint.intValue()/intVelocity.intValue();
-        return iteration;
+        EditText edPoints = (EditText)findViewById(R.id.enter_point);
+        EditText edVelocity = (EditText)findViewById(R.id.enter_velocity);
+
+        Integer point = Integer.parseInt(String.valueOf(edPoints.getText()));
+        Integer velocity = Integer.parseInt(String.valueOf(edVelocity.getText()));
+
+        EstimateIteration estimateIteration = new EstimateIteration();
+        int numberOfIteration = estimateIteration.getIteration(point.intValue(), velocity.intValue());
+        putEstimationIntoDatabase(point.intValue(),velocity.intValue(),numberOfIteration);
+        return numberOfIteration;
+    }
+
+    private void putEstimationIntoDatabase(int point,int velocity,int numberOfIteration){
+        DatabaseCreator databaseCreator = new DatabaseCreator(this);
+        DataProcessor dataProcessor = new DataProcessor(databaseCreator);
+        dataProcessor.putData(point, velocity, numberOfIteration);
     }
 
     public void clickPhoto(View view){
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if(takePictureIntent.resolveActivity(getPackageManager())!=null){
-            startActivityForResult(takePictureIntent,REQUEST_IMAGE_CAPTURE);
-        }
+        startActivityForResult(takePictureIntent,REQUEST_IMAGE_CAPTURE);
     }
 
     @Override
