@@ -1,8 +1,6 @@
 package com.example.saylik.iteration;
 import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -12,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import datastorage.DataProcessor;
-import datastorage.DatabaseCreationContract;
 import datastorage.DatabaseCreator;
 import estimation.EstimateIteration;
 
@@ -53,17 +50,6 @@ public class CalculateIteration extends Activity {
         DatabaseCreator databaseCreator = new DatabaseCreator(this);
         DataProcessor dataProcessor = new DataProcessor(databaseCreator);
         dataProcessor.putData(point, velocity, numberOfIteration);
-    }
-
-    private void putEstimationIntoDatabase(int point,int velocity,int iteration){
-        EstimationReader estimationReader = new EstimationReader(this);
-        SQLiteDatabase db = estimationReader.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(EstimationReaderContract.IterationEntry.POINT,point);
-        values.put(EstimationReaderContract.IterationEntry.PROJECT_VELOCITY,velocity);
-        values.put(EstimationReaderContract.IterationEntry.ITERATION,iteration);
-        db.insert(EstimationReaderContract.IterationEntry.TABLE_ITERATION,null,values);
-        db.close();
     }
 
     public void clickPhoto(View view){
