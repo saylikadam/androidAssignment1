@@ -14,13 +14,13 @@ public class DataProcessor {
         this.databaseCreator = databaseCreator;
     }
 
-    public void putData(int point ,int velocity,int iteration){
+    public void putData(int point, int velocity, int iteration) {
         SQLiteDatabase db = databaseCreator.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(DatabaseCreationContract.IterationEntry.POINT,point);
-        values.put(DatabaseCreationContract.IterationEntry.PROJECT_VELOCITY,velocity);
-        values.put(DatabaseCreationContract.IterationEntry.ITERATION,iteration);
-        db.insert(DatabaseCreationContract.IterationEntry.TABLE_ITERATION,null,values);
+        values.put(DatabaseCreationContract.IterationEntry.POINT, point);
+        values.put(DatabaseCreationContract.IterationEntry.PROJECT_VELOCITY, velocity);
+        values.put(DatabaseCreationContract.IterationEntry.ITERATION, iteration);
+        db.insert(DatabaseCreationContract.IterationEntry.TABLE_ITERATION, null, values);
         db.close();
     }
 }

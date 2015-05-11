@@ -5,8 +5,8 @@ package estimation;
  */
 public class EstimateIteration {
 
-    public int getIteration(int point, int velocity){
-        return point/velocity;
+    public int getIteration(int point, int velocity) {
+        return point / velocity;
 
     }
 }
