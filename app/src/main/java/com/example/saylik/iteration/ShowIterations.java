@@ -19,25 +19,25 @@ public class ShowIterations extends Activity {
     }
 
     private void setIteration() {
-        TextView textView = (TextView)findViewById(R.id.show_iterations);
+        TextView textView = (TextView) findViewById(R.id.show_iterations);
         Intent intent = getIntent();
         int iterations = intent.getIntExtra("iteration", 0);
         textView.setText(String.valueOf(iterations));
     }
 
     private int calculateBuffer() {
-        TextView iterationValue = (TextView)findViewById(R.id.show_iterations);
+        TextView iterationValue = (TextView) findViewById(R.id.show_iterations);
         Integer iterations = Integer.parseInt(iterationValue.getText().toString());
-        EditText bufferValue = (EditText)findViewById(R.id.show_buffer);
+        EditText bufferValue = (EditText) findViewById(R.id.show_buffer);
         Integer buffer = Integer.parseInt(bufferValue.getText().toString());
-        int bufferWithIter = iterations.intValue()+buffer.intValue();
+        int bufferWithIter = iterations.intValue() + buffer.intValue();
         return bufferWithIter;
     }
 
-    public void calcIterWithBuff(View view){
+    public void calcIterWithBuff(View view) {
         Intent resultIntent = new Intent();
-        resultIntent.putExtra("iterationWithBuffer",String.valueOf(calculateBuffer()));
-        setResult(Activity.RESULT_OK,resultIntent);
+        resultIntent.putExtra("iterationWithBuffer", String.valueOf(calculateBuffer()));
+        setResult(Activity.RESULT_OK, resultIntent);
         finish();
     }
 }

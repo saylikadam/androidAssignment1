@@ -10,7 +10,7 @@ public class DatabaseCreationContract {
     public DatabaseCreationContract() {
     }
 
-    public static abstract class IterationEntry implements BaseColumns{
+    public static abstract class IterationEntry implements BaseColumns {
         public static final String TABLE_ITERATION = "estimated_data";
         public static final String ITERATION_ID = "id";
         public static final String POINT = "point";
