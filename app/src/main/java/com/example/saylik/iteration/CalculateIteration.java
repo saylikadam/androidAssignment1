@@ -1,5 +1,4 @@
 package com.example.saylik.iteration;
-
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -37,6 +36,7 @@ public class CalculateIteration extends Activity {
     }
 
     public int calculateIterations(){
+
         EditText edPoints = (EditText)findViewById(R.id.enter_point);
         EditText edVelocity = (EditText)findViewById(R.id.enter_velocity);
 
@@ -53,6 +53,17 @@ public class CalculateIteration extends Activity {
         DatabaseCreator databaseCreator = new DatabaseCreator(this);
         DataProcessor dataProcessor = new DataProcessor(databaseCreator);
         dataProcessor.putData(point, velocity, numberOfIteration);
+    }
+
+    private void putEstimationIntoDatabase(int point,int velocity,int iteration){
+        EstimationReader estimationReader = new EstimationReader(this);
+        SQLiteDatabase db = estimationReader.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(EstimationReaderContract.IterationEntry.POINT,point);
+        values.put(EstimationReaderContract.IterationEntry.PROJECT_VELOCITY,velocity);
+        values.put(EstimationReaderContract.IterationEntry.ITERATION,iteration);
+        db.insert(EstimationReaderContract.IterationEntry.TABLE_ITERATION,null,values);
+        db.close();
     }
 
     public void clickPhoto(View view){
