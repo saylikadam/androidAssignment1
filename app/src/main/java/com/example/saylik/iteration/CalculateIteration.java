@@ -1,16 +1,17 @@
 package com.example.saylik.iteration;
-
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import datastorage.EstimationReader;
+import datastorage.EstimationReaderContract;
 
 public class CalculateIteration extends Activity {
 
@@ -21,14 +22,6 @@ public class CalculateIteration extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculate_iteration);
-//        Button clickPhoto = (Button)findViewById(R.id.click_picture);
-//        clickPhoto.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
-
     }
 
     public void calculateIteration(View view){
@@ -44,7 +37,19 @@ public class CalculateIteration extends Activity {
         Integer intPoint = Integer.parseInt(String.valueOf(points.getText()));
         Integer intVelocity = Integer.parseInt(String.valueOf(velocity.getText()));
         int iteration = intPoint.intValue()/intVelocity.intValue();
+        putEstimationIntoDatabase(intPoint.intValue(),intVelocity.intValue(),iteration);
         return iteration;
+    }
+
+    private void putEstimationIntoDatabase(int point,int velocity,int iteration){
+        EstimationReader estimationReader = new EstimationReader(this);
+        SQLiteDatabase db = estimationReader.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(EstimationReaderContract.IterationEntry.POINT,point);
+        values.put(EstimationReaderContract.IterationEntry.PROJECT_VELOCITY,velocity);
+        values.put(EstimationReaderContract.IterationEntry.ITERATION,iteration);
+        db.insert(EstimationReaderContract.IterationEntry.TABLE_ITERATION,null,values);
+        db.close();
     }
 
     public void clickPhoto(View view){
