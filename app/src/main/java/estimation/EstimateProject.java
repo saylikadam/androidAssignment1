@@ -3,10 +3,9 @@ package estimation;
 /**
  * Created by saylik on 11/05/15.
  */
-public class EstimateIteration {
+public class EstimateProject {
 
-    public int getIteration(int point, int velocity) {
+    public int getNumberOfIteration(int point, int velocity) {
         return point / velocity;
-
     }
 }

@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import datastorage.DataProcessor;
 import datastorage.DatabaseCreator;
-import estimation.EstimateIteration;
+import estimation.EstimateProject;
 
 
 public class CalculateIteration extends Activity {
@@ -27,22 +27,21 @@ public class CalculateIteration extends Activity {
     }
 
     public void calculateIteration(View view) {
-        Intent showIteration = new Intent(CalculateIteration.this, ShowIterations.class);
-        int iterations = calculateIterations();
-        showIteration.putExtra("iteration", iterations);
-        startActivityForResult(showIteration, CALCULATE_ITERATION_WITH_BUFFER);
+        Intent showNoOfIterationIntent = new Intent(CalculateIteration.this, ShowIterations.class);
+        int iterations = getNumberOfIteration();
+        showNoOfIterationIntent.putExtra("iteration", iterations);
+        startActivityForResult(showNoOfIterationIntent, CALCULATE_ITERATION_WITH_BUFFER);
     }
 
-    public int calculateIterations() {
-
+    public int getNumberOfIteration() {
         EditText edPoints = (EditText) findViewById(R.id.enter_point);
         EditText edVelocity = (EditText) findViewById(R.id.enter_velocity);
 
         Integer point = Integer.parseInt(String.valueOf(edPoints.getText()));
         Integer velocity = Integer.parseInt(String.valueOf(edVelocity.getText()));
 
-        EstimateIteration estimateIteration = new EstimateIteration();
-        int numberOfIteration = estimateIteration.getIteration(point.intValue(), velocity.intValue());
+        EstimateProject estimateProject = new EstimateProject();
+        int numberOfIteration = estimateProject.getNumberOfIteration(point.intValue(), velocity.intValue());
         putEstimationIntoDatabase(point.intValue(), velocity.intValue(), numberOfIteration);
         return numberOfIteration;
     }
@@ -53,10 +52,10 @@ public class CalculateIteration extends Activity {
         dataProcessor.putData(point, velocity, numberOfIteration);
     }
 
-
     public void clickPhoto(View view) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        Intent chooser = Intent.createChooser(takePictureIntent,getString(R.string.chooser_title));
+        startActivityForResult(chooser, REQUEST_IMAGE_CAPTURE);
     }
 
     @Override
