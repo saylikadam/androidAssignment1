@@ -11,4 +11,7 @@
     <string name="title_activity_show_iterations">Iteration Planner</string>
     <string name="buffer">buffer</string>
     <string name="lbl_buffer">iteration with buffer</string>
+    <string name="chooser_action">perform action via</string>
+    <string name="rec_est_button">Record_Estimate</string>
+
 </resources>

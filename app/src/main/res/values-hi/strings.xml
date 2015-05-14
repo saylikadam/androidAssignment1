@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="app_name">चलना योजनाकार</string>
+    <string name="hello_world">हैलो वर्ल्ड</string>
+    <string name="action_settings">सेटिंग</string>
+    <string name="title_activity_calculate_iteration">चलना योजनाकार</string>
+    <string name="lbl_points">अंक</string>
+    <string name="lbl_enter_points">अंक दर्ज</string>
+    <string name="lbl_velocity">वेग</string>
+    <string name="lbl_enter_velocity">वेग दर्ज</string>
+    <string name="iterations">पुनरावृत्तियों</string>
+    <string name="title_activity_show_iterations">चलना योजनाकार</string>
+    <string name="buffer">बफर</string>
+    <string name="lbl_buffer">बफर के साथ चलना</string>
+    <string name="chooser_action">के माध्यम से कार्रवाई के लिए प्रदर्शन</string>
+    <string name="rec_est_button">रिकॉर्ड का अनुमान</string>
+</resources>

@@ -56,7 +56,9 @@ public class CalculateIteration extends Activity {
 
     public void clickPhoto(View view) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        String title = getResources().getString(R.string.chooser_action);
+        Intent chooser = Intent.createChooser(takePictureIntent,title);
+        startActivityForResult(chooser, REQUEST_IMAGE_CAPTURE);
     }
 
     @Override
